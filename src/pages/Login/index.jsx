@@ -4,17 +4,15 @@ import Input from "../../componentes/Input";
 import { useForm } from "react-hook-form";
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import Api from "../../Services/api";
+import api from "../../services/api";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function Login(){
+function Login({authenticated, setAuthenticated}){
 
     const schema = yup.object().shape({
-        name: yup.string('').required('Campo obrigatório!'),
         email: yup.string('').email('Email inválido').required('Campo obrigatório!'),
         password: yup.string('').min(6, 'Mínimo de 6 digitos').required('Campo obrigatório!'),
-        passwordConfirm: yup.string('').oneOf([yup.ref('password')], 'Senhas diferentes').required('Campo obrigatório!'),
 
     })
 
@@ -28,31 +26,30 @@ function Login(){
 
     const history = useHistory()
 
-    const submit = (data) => {
-        const user = {
-                email: data.email,
-                password: data.password,
-                name: data.name,
-                bio: "undefined",
-                contact: "undefined",
-                course_module: "Segundo Módulo (Frontend avançado)",
-            }
-            console.log(user)
-        Api
-        .post('/users', user)
-        .then((response) => {
-            toast.success('Sucesso ao se cadastrar')
-            history.push('/login')
-        })
-        .catch((err) => toast.error('Erro ao se cadastrar'))
-    }
-
     const returnPage = (path) =>{
 
         return history.push(path)
 
     }
 
+    const submit = (data) => {
+        api
+        .post('/sessions', data)
+        .then((response) => {
+            const {token, user} = response.data
+            localStorage.setItem('USER_TOKEN', JSON.stringify(token))
+            localStorage.setItem('USER_ID', JSON.stringify(user))
+            history.push('/dashboard')
+            setAuthenticated(true)
+        })
+        .catch((err) => toast.error('Email ou senha invalidos'))
+    
+    }
+
+    if(authenticated){
+        return <Redirect to='/dashboard'/>
+    }
+  
     return(
         <>
         <Header>
