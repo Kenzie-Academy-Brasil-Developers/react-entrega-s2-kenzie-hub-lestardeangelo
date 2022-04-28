@@ -1,16 +1,14 @@
 import { Container, Content, AnimationContainer, Header } from "./styles";
 import  Button  from "../../componentes/Button";
-import {Link} from "react-router-dom"
 import Input from "../../componentes/Input";
 import { useForm } from "react-hook-form";
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import api from "../../Services/api";
+import Api from "../../Services/api";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import axios from "axios";
 
-function Singup(){
+function Login(){
 
     const schema = yup.object().shape({
         name: yup.string('').required('Campo obrigatório!'),
@@ -39,8 +37,8 @@ function Singup(){
                 contact: "undefined",
                 course_module: "Segundo Módulo (Frontend avançado)",
             }
-            
-        api
+            console.log(user)
+        Api
         .post('/users', user)
         .then((response) => {
             toast.success('Sucesso ao se cadastrar')
@@ -60,23 +58,13 @@ function Singup(){
         <Header>
             <header>
                 <h1>Kenzie Hub</h1>
-                <Button onClick={() => returnPage('/')}>voltar</Button>
             </header>
         </Header>
         <Container>
             <Content>
                 <AnimationContainer>
                     <form onSubmit={handleSubmit(submit)}>
-                        <h1>Crie sua conta</h1>
-                        <span>Rapido e grátis, vamos nessa</span>
-                        
-                        <Input 
-                        register={register('name')} 
-                        name='name' 
-                        label='Nome' 
-                        placeholder='Digite aqui seu nome' 
-                        error={errors.name?.message}
-                        />
+                        <h1>Login</h1>
 
                         <Input 
                         register={register('email')} 
@@ -94,24 +82,9 @@ function Singup(){
                         type='password'error={errors.password?.message}
                         />
 
-                        <Input 
-                        register={register('passwordConfirm')} 
-                        name='passwordConfirm' 
-                        label='Confirmar senha' 
-                        placeholder='Digite novamente sua senha' 
-                        type='password'
-                        error={errors.passwordConfirm?.message}
-
-                        />
-
-                        <Input 
-                        type= 'select'
-                        label='Selecionar modulo'
-                        />
-
-                        <Button type='submit'>Cadastrar</Button>
-                        
-                        <p> Já tem uma conta? Faça seu <Link to='/Link'>login</Link></p>
+                        <Button type='submit'>Entrar</Button>
+                        <span>Ainda não possui uma conta?</span>
+                        <Button onClick={() => returnPage('/singup')} whiteSchema = 'false'>Cadastre-se</Button>
 
                     </form>
                 </AnimationContainer>
@@ -121,4 +94,4 @@ function Singup(){
     )
 }
 
-export default Singup
+export default Login

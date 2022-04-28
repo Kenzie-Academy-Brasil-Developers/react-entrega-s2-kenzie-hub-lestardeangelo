@@ -5,7 +5,7 @@ import { keyframes } from "styled-components";
 export const Container = styled.div`
     display: flex;
     align-items: center;
-    height: 90vh;
+    height: 75vh;
     background: var(--black);
     justify-content: center;
 `;
@@ -43,7 +43,7 @@ export const AnimationContainer = styled.div`
         min-width: 350px;
         text-align: center;
         background: var(--grey3);
-        height: 630px;
+        height: 430px;
         display: flex;
         -ms-flex-direction: column;
         flex-direction: column;
@@ -75,16 +75,14 @@ export const AnimationContainer = styled.div`
     }
 
     span{
-        margin-bottom: 8px;
         font-size: 12px;
         color: var(--grey1);
     }
 
     button{
-        background: var(--red2);
-
+        margin-top: 10px;
+        margin-bottom: 15px;
     }
-
 
 `
 
@@ -101,14 +99,6 @@ export const Header = styled.div`
  
     h1{
         color: var(--red1)
-    }
-
-    button{
-        width: 68px;
-        height: 32px;
-        color: var(--grey0);
-        background-color: var(--grey3);
-        margin-top: 0px;
     }
 
 `
