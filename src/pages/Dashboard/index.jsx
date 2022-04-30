@@ -8,7 +8,7 @@ import Modal from "../../Modal";
 import Card from "../../componentes/Card";
 
 
-function Dashboard({authenticated}){
+function Dashboard({authenticated, setAuthenticated}){
 
     const [display, setDisplay] = useState("none");
     const [card, setCard] = useState([])
@@ -24,12 +24,12 @@ function Dashboard({authenticated}){
         .catch((err) => console.log(err))
     }, [card])
 
-    console.log(user)
-
     const history = useHistory()
 
     const returnPage = (path) =>{
 
+        setAuthenticated(false)
+        localStorage.clear('USER_TOKEN')
         return history.push(path)
 
     }

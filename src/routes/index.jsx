@@ -11,6 +11,7 @@ function Routes(){
     const [authenticated, setAuthenticated] = useState(false)
 
     useEffect(() => {
+        
         const token = JSON.parse(localStorage.getItem('USER_TOKEN'))
 
         if(token){
@@ -34,7 +35,9 @@ function Routes(){
                  setAuthenticated={setAuthenticated}/>
             </Route>
             <Route path='/dashboard'>
-                <Dashboard authenticated={authenticated}/>
+                <Dashboard 
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}/>
             </Route>
         </Switch>
     )
