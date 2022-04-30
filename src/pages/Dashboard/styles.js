@@ -62,10 +62,10 @@ export const Nav = styled.section`
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
     height: 75px;
     width: 100vw;
     border: solid var(--grey3);
+    justify-content: space-around;
 
     span{
 
