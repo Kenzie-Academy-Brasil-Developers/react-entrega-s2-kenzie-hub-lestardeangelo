@@ -11,7 +11,7 @@ function Home({authenticated}){
     }
 
     if(authenticated){
-        return <Redirect to='/login'/>
+        return <Redirect to='/'/>
     }
 
     return <Container>
