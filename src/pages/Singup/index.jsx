@@ -16,7 +16,7 @@ function Singup({authenticated}){
         email: yup.string('').email('Email inválido').required('Campo obrigatório!'),
         password: yup.string('').min(6, 'Mínimo de 6 digitos').required('Campo obrigatório!'),
         passwordConfirm: yup.string('').oneOf([yup.ref('password')], 'Senhas diferentes').required('Campo obrigatório!'),
-
+        course_module: yup.string('').required('Campo obrigatório')
     })
 
     const {
@@ -42,7 +42,7 @@ function Singup({authenticated}){
                 name: data.name,
                 bio: "undefined",
                 contact: "undefined",
-                course_module: "Segundo Módulo (Frontend avançado)",
+                course_module: data.course_module,
             }
             
         api
@@ -50,12 +50,13 @@ function Singup({authenticated}){
         .then((response) => {
             toast.success('Sucesso ao se cadastrar')
             history.push('/login')
+
         })
         .catch((err) => toast.error('Erro ao se cadastrar'))
     }
 
     if(authenticated){
-        return <Redirect to='/dashboard'/>
+        return <Redirect to='/login'/>
     }
 
     return(
@@ -121,8 +122,7 @@ function Singup({authenticated}){
                             <option>Quarto Módulo</option>
                             <option>Quinto Módulo</option>
                             <option>Sexto Módulo</option>
-                            <option>Terceiro Quarter</option>
-                            <option>Quarto Quarter</option>
+
                         </Select>
 
                         <Button type='submit'>Cadastrar</Button>

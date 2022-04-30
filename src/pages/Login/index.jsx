@@ -39,6 +39,7 @@ function Login({authenticated, setAuthenticated}){
             const {token, user} = response.data
             localStorage.setItem('USER_TOKEN', JSON.stringify(token))
             localStorage.setItem('USER_ID', JSON.stringify(user))
+            
             history.push('/dashboard')
             setAuthenticated(true)
         })

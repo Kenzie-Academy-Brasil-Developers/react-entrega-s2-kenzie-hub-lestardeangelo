@@ -16,6 +16,7 @@ export default createGlobalStyle`
         --grey1: #868E96;
         --grey2: #343B41;
         --grey3: #212529;
+        --grey4: #121214;
         --red1: #FF577F;
         --red2: #59323F;
         --black: #000000;

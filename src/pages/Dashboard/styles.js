@@ -5,10 +5,12 @@ export const Container = styled.section`
         align-items: center;
         background: var(--black);
         justify-content: flex-start;
-        height: 100vh;
         flex-direction: column;
         flex-wrap: wrap;
+        width: 100vw;
+
     div{
+        
         height: 50px;
         width: 100vw;
         display: flex;
@@ -82,11 +84,38 @@ export const Form = styled.form`
 
     display: flex;
     width: 85%;
-    height: 65%;
+    height: 65vh;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-top: 25px;
     background: var(--grey3);
+    padding: 15px;
+    padding-top: 25px;
+
+`
+
+export const FormContainer = styled.div`
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 0px;
+
+    button{
+        width: 25px;
+        height: 24px;
+        color: var(--grey0);
+        background-color: transparent;
+        margin-top: 0px;
+        border: none;
+    }
+
+`
+export const ModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
 
 `
